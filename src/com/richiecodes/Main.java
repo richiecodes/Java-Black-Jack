@@ -1,5 +1,7 @@
 package com.richiecodes;
 
+import cards.Deck;
+
 public class Main {
 
     public static void main(String[] args) {

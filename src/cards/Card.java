@@ -1,4 +1,4 @@
-package com.richiecodes;
+package cards;
 
 import java.util.Arrays;
 import java.util.List;
