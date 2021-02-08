@@ -1,14 +1,24 @@
 package com.richiecodes;
 
-import player.Player;
+import cards.*;
+import player.Dealer;
+import ui.*;
 
 public class Main {
 
     public static void main(String[] args) {
-        //TODO: Create Player/Dealer class
-	    Player player1 = new Player("Richie", 1000);
-	    player1.showPlayerInfo();
-		System.out.println("\n");
-	    player1.showPlayerDeck();
+//        StdDeck myDeck = new StdDeck();
+//        myDeck.shuffle();
+//        System.out.println(myDeck.draw().toString());
+//
+//        System.out.println(myDeck.draw().toString());
+//
+//        System.out.println(myDeck.draw().toString());
+//
+//        System.out.println(myDeck.draw().toString());
+//
+//        System.out.println(myDeck.draw().toString());
+
+        Dealer dealer = new Dealer();
     }
 }

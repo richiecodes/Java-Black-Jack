@@ -2,37 +2,29 @@ package ui;
 
 import java.util.Scanner;
 
-public class Console implements UI {
+public class Console {
 
-    private Scanner scanner = new Scanner(System.in);
+    Scanner scanner = new Scanner(System.in);
 
+    public int getNumber(String query, int min, int max) {
+        int inputInt = 0;
 
-    @Override
-    public String getString(String q) {
-        if(!q.isEmpty()) {
-            System.out.println(q);
-            return scanner.next();
-        } else {
-            throw new IllegalArgumentException("ERROR: EMPTY QUERY");
-        }
+        do {
+            System.out.println(query);
+            String input = scanner.nextLine();
+            try {
+                inputInt = Integer.parseInt(input);
+            } catch (NumberFormatException e) {
+                System.out.println("Not a valid input!");
+            }
+
+        } while(inputInt < min || inputInt > max);
+
+        return inputInt;
     }
 
-    @Override
-    public int getInt(String q) {
-        if(!q.isEmpty()) {
-            System.out.println(q);
-            return scanner.nextInt();
-        } else {
-            throw new IllegalArgumentException("ERROR: EMPTY QUERY");
-        }
-    }
-
-    @Override
-    public void cls() {
-        int i = 100;
-        while (i > 0) {
-            System.out.println("\n");
-            i--;
-        }
+    public String getString(String query) {
+        System.out.println(query);
+        return scanner.nextLine();
     }
 }

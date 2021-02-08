@@ -1,55 +1,53 @@
 package cards;
 
-import java.util.Arrays;
-import java.util.List;
-
 public class Card {
-    private String faceValue, suit;
+    private String suit;
+    private int value;
+    private boolean isHidden = false;
 
-    public Card(String faceValue, String suit) {
-        setFaceValue(faceValue);
-        setSuit(suit);
-    }
-
-    public static List<String> getValidValues() {
-        return Arrays.asList("Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King");
-
-    }
-
-    private void setFaceValue(String faceValue) {
-        if(getValidValues().contains(faceValue)) {
-            this.faceValue = faceValue;
-        } else {
-            throw new IllegalArgumentException("ERROR: Invalid Value: " + faceValue);
-        }
-    }
-
-    public String getFaceValue() {
-        return faceValue;
-    }
-
-    public static List<String> getValidSuits() {
-        return Arrays.asList("Clubs", "Spades", "Hearts", "Diamonds");
-    }
-
-    private void setSuit(String suit) {
-        if(getValidSuits().contains(suit)) {
-            this.suit = suit;
-        } else {
-            throw new IllegalArgumentException("ERROR: Invalid Suit: " + suit);
-        }
-    }
-
-    public String getSuit() {
-        return suit;
+    public Card(String suit, int value) {
+        this.suit = suit;
+        this.value = value;
     }
 
     @Override
     public String toString() {
         String output = "";
 
-        output += String.format("%s of %s", faceValue, suit);
+        switch(value) {
+            case 1:
+                output = "AC";
+                break;
 
-        return output;
+            case 11:
+                output = "JA";
+                break;
+
+            case 12:
+                output = "QU";
+                break;
+
+            case 13:
+                output = "KI";
+                break;
+
+            default:
+                output = value == 10 ? Integer.toString(value) : " " + value;
+        }
+
+        return (output + suit).trim();
     }
+
+    public int getValue() {
+        return value;
+    }
+
+    public String getSuit() {
+        return suit;
+    }
+
+    public void setHidden(boolean hidden) {
+        this.isHidden = hidden;
+    }
+
 }
