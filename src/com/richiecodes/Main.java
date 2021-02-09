@@ -2,6 +2,7 @@ package com.richiecodes;
 
 import cards.*;
 import player.Dealer;
+import player.Player;
 import ui.*;
 
 public class Main {
@@ -19,6 +20,6 @@ public class Main {
 //
 //        System.out.println(myDeck.draw().toString());
 
-        Dealer dealer = new Dealer();
+        BlackJack blackJack = new BlackJack();
     }
 }

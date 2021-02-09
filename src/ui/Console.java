@@ -27,4 +27,12 @@ public class Console {
         System.out.println(query);
         return scanner.nextLine();
     }
+
+    public void cls() {
+        int i = 100;
+        while(i > 0) {
+            System.out.println("\n");
+            i--;
+        }
+    }
 }

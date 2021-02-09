@@ -14,13 +14,17 @@ public class Dealer implements Hand {
         deck = new StdDeck();
         deck.shuffle();
         dealerHand = new ArrayList<>();
-        dealHandToSelf();
-        showHand();
-        validateHand();
     }
 
     public void dealHandToPlayer(Player player) {
+        List<Card> playerHand = new ArrayList<>();
+        playerHand.add(deck.draw());
+        playerHand.add(deck.draw());
+        player.addCardsToHand(playerHand);
+    }
 
+    public void dealCardToPlayer(Player player) {
+        player.addCardToHand(deck.draw());
     }
 
     public List<Card> dealHandToSelf() {
@@ -33,7 +37,7 @@ public class Dealer implements Hand {
     }
 
     public void showHand() {
-        System.out.println(dealerHand.toString().trim());
+        System.out.println("Dealer Hand: " + dealerHand.toString().trim());
     }
 
     public List<Card> getHand() {
@@ -48,10 +52,15 @@ public class Dealer implements Hand {
         int sum = dealerHand.get(0).getValue() + dealerHand.get(dealerHand.size() - 1).getValue();
 
         while(sum <= 21) {
-            if(sum <= 17) {
+            if(sum < 17) {
                 addCardsToHand();
                 showHand();
                 sum += dealerHand.get(dealerHand.size() - 1).getValue();
+                for(var card : dealerHand) {
+                    if(card.getValue() == 1 && sum < 11) {
+                        card.setValue(11);
+                    }
+                }
             } else {
                 break;
             }
@@ -64,5 +73,9 @@ public class Dealer implements Hand {
         }else {
             System.out.println("Dealer Stood with value: " + sum);
         }
+    }
+
+    public StdDeck getDeck() {
+        return deck;
     }
 }
