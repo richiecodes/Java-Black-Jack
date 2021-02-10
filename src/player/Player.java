@@ -12,6 +12,8 @@ public class Player implements Hand {
     private int chips;
     Console console = new Console();
 
+    private int playerBet;
+
     public Player() {
         this.name = setName();
         this.chips = setChips();
@@ -23,7 +25,8 @@ public class Player implements Hand {
     }
 
     public String setName() {
-        return console.getString("Enter Player Name");
+        String playerName = console.getString("Enter Player Name");
+        return (playerName.substring(0, 1).toUpperCase() + playerName.substring(1));
     }
 
     public void showHand() {
@@ -69,10 +72,21 @@ public class Player implements Hand {
 
         if(sum <= 21) {
             return true;
-        } else {
-            System.out.println(name + " busted!");
-            return false;
         }
+        else {
+            System.out.println(name + " busted!");
+            setChips(getChips() - (playerBet * 2));
+        }
+
+        return true;
     }
 
+    public void setPlayerBet(int bet) {
+        this.playerBet = bet;
+        setChips(getChips() - bet);
+    }
+
+    public int getPlayerBet() {
+        return playerBet;
+    }
 }

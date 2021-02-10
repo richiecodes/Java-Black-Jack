@@ -68,11 +68,20 @@ public class Dealer implements Hand {
 
         if(sum > 21) {
             System.out.println("DEALER BUST");
+            dealerBust(sum);
         } else if(sum == 21) {
             System.out.println("DEALER BLACK JACK");
         }else {
             System.out.println("Dealer Stood with value: " + sum);
         }
+    }
+
+    public boolean dealerBust(int sum) {
+        if(sum > 21) {
+            return true;
+        }
+
+        return false;
     }
 
     public StdDeck getDeck() {
